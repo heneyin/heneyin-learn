@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  zookeeper_test:
+    image: wurstmeister/zookeeper:3.4.6
+    hostname: zookeeper_test
+    ports:
+      - 2181:2181
+  kafka_test:
+    image: wurstmeister/kafka:2.12-2.2.1
+    environment:
+      KAFKA_BROKER_NO: 1
+      KAFKA_CREATE_TOPICS: "test_producer"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper_test:2181
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+    depends_on:
+      - zookeeper_test
+    ports:
+      - 9092:9092

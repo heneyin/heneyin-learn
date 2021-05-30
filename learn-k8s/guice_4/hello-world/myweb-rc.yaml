@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myweb
+spec:
+  replicas: 2
+  selector:
+    app: myweb
+  template:
+    metadata:              # 元数据
+      labels:
+        app: myweb
+    spec:                  # 说明
+      containers:
+        - name: myweb
+          image: kubeguice/tomcat-app:v1
+          ports:
+            - containerPort: 8080

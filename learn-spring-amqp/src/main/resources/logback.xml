@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+
+    <contextName>logback-common</contextName>
+    <!--${logback.home} 在启动时 -D 中配置-->
+    <property name="logback.main" value="scheduler-server.log"/>
+    <property name="logback.error" value="error.log"/>
+    <property name="logback.job" value="job.log"/>
+
+    <!--输出到控制台 ConsoleAppender-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!--范围过滤-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+
+        <!--展示格式 layout-->
+<!--
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d [%thread] %-5level %logger{36} %line - %msg%n</pattern>
+        </layout>
+-->
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="com.henvealf.learn.spring.amqp.MyJsonLayout">
+                <logType>test</logType>
+            </layout>
+        </encoder>
+
+    </appender>
+
+    <appender name="main" class="com.henvealf.learn.spring.amqp.AmqpAppender">
+
+        <!--rabbitmq地址 -->
+
+        <host>localhost</host>
+        <port>5672</port>
+        <username>guest</username>
+        <password>guest</password>
+        <queue>test1</queue>
+        <routingKey>test</routingKey>
+        <exchangeName>teste</exchangeName>
+        <exchangeType>topic</exchangeType>
+
+        <exchangeType>topic</exchangeType>
+
+        <exchangeName>teste</exchangeName>
+
+        <routingKeyPattern>test</routingKeyPattern>
+
+        <generateId>true</generateId>
+
+        <charset>UTF-8</charset>
+
+        <durable>false</durable>-->
+
+<!--        <deliveryMode>NON_PERSISTENT</deliveryMode>-->
+
+<!--        <autoDelete>false</autoDelete>-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <layout class="com.henvealf.learn.spring.amqp.MyJsonLayout">
+            <logType>test</logType>
+        </layout>
+
+    </appender>
+
+
+    <root level="INFO">
+        <appender-ref ref="console" />
+        <appender-ref ref="main" />
+    </root>
+
+    <shutdownHook class = "com.henvealf.learn.spring.amqp.DefaultShutdownHook"/>
+
+</configuration>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+
+    <!--组装的ID，用来命名组装的包-->
+    <id>learn-assembly</id>
+
+    <!--组装后的文件格式-->
+    <formats>
+        <format>zip</format>
+        <format>tar.gz</format>
+    </formats>
+
+    <!--打包的时候是否在包中包含项目根目录， 默认 true -->
+    <includeBaseDirectory>true</includeBaseDirectory>
+
+    <!--是否包含站目录，站点目录使用插件参数 siteDirectory  来定义-->
+    <includeSiteDirectory>false</includeSiteDirectory>
+
+    <!--一组能够从普通的归档流过滤各种容器描述的组件，如此他们就能够被聚集然后添加？？？？-->
+    <containerDescriptorHandlers>
+        <containerDescriptorHandler>
+            <!--	The handler's plexus role-hint, for lookup from the container. -->
+            <handlerName>aaa</handlerName>
+            <!--配置处理器-->
+            <configuration>
+
+            </configuration>
+        </containerDescriptorHandler>
+
+        <containerDescriptorHandler>
+        </containerDescriptorHandler>
+    </containerDescriptorHandlers>
+
+    <!--指定哪些module的文件包含在该组装中，通过一到多个 moduleSet  子元素来指定-->
+    <moduleSets>
+        <moduleSet>
+            <!--如果设置为true，则插件将包含当前reactor中的所有项目，以便在此ModuleSet中进行处理。这些将受包含/排除规则的约束。-->
+            <useAllReactorProjects>false</useAllReactorProjects>
+            <!--是否包含子模块，将受包含/排除规则的约束。-->
+            <includeSubModules>true</includeSubModules>
+
+            <!--如果出现了include子元素，则会定义一些项目坐标以包含。如果没有 include，则代表所有的项目都可用。 groupId:artifactId:type[:classifier]:version -->
+            <includes>
+                <include>com.google.code.gson:gson</include>
+            </includes>
+
+            <excludes>
+                <!--如果出现了 exclude 子元素，则一些项目坐标会被排除。如果没有 exclude，则代表没有项目要排除。 groupId:artifactId:type[:classifier]:version -->
+                <exclude>io.netty:netty-all</exclude>
+            </excludes>
+            <!--如果设置了，插件会包含一些已经包含了的组件的资源文件在组装中。-->
+            <sources>
+                <useDefaultExcludes></useDefaultExcludes>
+                <outputDirectory></outputDirectory>
+                <includes>
+                    <include></include>
+                </includes>
+                <excludes>
+                    <exclude></exclude>
+                </excludes>
+                <fileMode>755</fileMode>
+                <directoryMode>755</directoryMode>
+                <fileSets>
+                    <fileSet>
+                        <useDefaultExcludes>true</useDefaultExcludes>
+                        <outputDirectory></outputDirectory>
+                        <includes>
+                            <include></include>
+                        </includes>
+                        <excludes>
+                            <exclude></exclude>
+                        </excludes>
+                        <fileMode></fileMode>
+                        <directoryMode></directoryMode>
+                        <directory></directory>
+                        <lineEnding></lineEnding>
+                        <filtered></filtered>
+                    </fileSet>
+                </fileSets>
+
+                <includeModuleDirectory>true</includeModuleDirectory>
+                <excludeSubModuleDirectories>true</excludeSubModuleDirectories>
+                <outputDirectoryMapping></outputDirectoryMapping>
+            </sources>
+
+            <!--如果设置了，插件会包含一些已经包含了的组件的二进制在组装中。-->
+            <binaries>
+                <outputDirectory></outputDirectory>
+                <includes>
+                    <include></include>
+                </includes>
+                <excludes>
+                    <exclude></exclude>
+                </excludes>
+                <fileMode></fileMode>
+                <directoryMode></directoryMode>
+                <attachmentClassifier></attachmentClassifier>
+                <includeDependencies></includeDependencies>
+                <dependencySets>
+                    <dependencySet></dependencySet>
+                </dependencySets>
+                <unpack></unpack>
+                <unpackOptions></unpackOptions>
+                <outputFileNameMapping></outputFileNameMapping>
+            </binaries>
+        </moduleSet>
+
+        <moduleSet>
+        </moduleSet>
+    </moduleSets>
+
+    <!--指定一组文件包含在该组装中，通过一到多个 fileSet  子元素来指定-->
+    <fileSets>
+        <fileSet>
+            <useDefaultExcludes>true</useDefaultExcludes>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include></include>
+            </includes>
+            <excludes>
+                <exclude></exclude>
+            </excludes>
+            <fileMode></fileMode>
+            <directoryMode></directoryMode>
+            <directory></directory>
+            <lineEnding></lineEnding>
+            <filtered></filtered>
+        </fileSet>
+        <fileSet></fileSet>
+    </fileSets>
+
+    <!--指定单个文件包含在该组装中，通过一到多个 file  子元素来指定-->
+    <files>
+        <file>
+            <source></source>
+            <outputDirectory></outputDirectory>
+            <destName></destName>
+            <fileMode></fileMode>
+            <lineEnding></lineEnding>
+            <filtered></filtered>
+        </file>
+        <file></file>
+    </files>
+
+    <!--指定哪些依赖包含在该组装中，通过一到多个 dependencySet  子元素来指定-->
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include></include>
+            </includes>
+            <excludes>
+                <exclude></exclude>
+            </excludes>
+            <fileMode></fileMode>
+            <directoryMode></directoryMode>
+            <useStrictFiltering></useStrictFiltering>
+            <outputFileNameMapping></outputFileNameMapping>
+            <unpack></unpack>
+            <unpackOptions>
+                <includes>
+                    <include></include>
+                </includes>
+                <excludes>
+                    <exclude></exclude>
+                </excludes>
+                <filtered></filtered>
+                <lineEnding></lineEnding>
+                <useDefaultExcludes></useDefaultExcludes>
+                <encoding></encoding>
+            </unpackOptions>
+            <scope></scope>
+            <useProjectArtifact></useProjectArtifact>
+            <useProjectAttachments></useProjectAttachments>
+            <useTransitiveDependencies></useTransitiveDependencies>
+            <useTransitiveFiltering></useTransitiveFiltering>
+        </dependencySet>
+        <dependencySet></dependencySet>
+    </dependencySets>
+    <!--指定哪些仓库的文件包含在该组装中，通过一到多个 repository  子元素来指定-->
+    <repositories>
+        <repository>
+            <outputDirectory></outputDirectory>
+            <includes>
+                <include></include>
+            </includes>
+            <excludes>
+                <exclude></exclude>
+            </excludes>
+            <fileMode></fileMode>
+            <directoryMode></directoryMode>
+            <includeMetadata></includeMetadata>
+            <groupVersionAlignments>
+                <groupVersionAlignment>
+                    <id></id>
+                    <version></version>
+                    <excludes>
+                        <exclude></exclude>
+                    </excludes>
+                </groupVersionAlignment>
+            </groupVersionAlignments>
+            <scope></scope>
+        </repository>
+        <repository></repository>
+    </repositories>
+
+    <!--
+        描述包含在该组装中的共享组件xml文件的位置。
+        Specifies the shared components xml file locations to include in the assembly.
+        The locations specified must be relative to the base location of the descriptor.
+        If the descriptor was found via a <descriptorRef/> element in the classpath,
+        any components it specifies will also be found on the classpath.
+        If it is found by pathname via a <descriptor/> element the value here will be interpreted as a path relative to the project basedir.
+        When multiple componentDescriptors are found, their contents are merged.
+        Check out the descriptor components for more information.
+        A componentDescriptor is specified by providing one or more of <componentDescriptor> subelements.
+     -->
+    <componentDescriptors>
+        <componentDescriptor>
+        </componentDescriptor>
+        <componentDescriptor></componentDescriptor>
+    </componentDescriptors>
+
+
+</assembly>

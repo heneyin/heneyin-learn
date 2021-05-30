@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service     # 类型为服务
+metadata:
+  name: mysql     #  service 全局名称
+spec:
+  ports:
+    - port: 3306    # service 的虚拟端口。
+  selector:        # 指定 service 的 POD 的对应的标签。
+    app: mysql
+# create command: kubectl create -f mysql-svc.yaml
