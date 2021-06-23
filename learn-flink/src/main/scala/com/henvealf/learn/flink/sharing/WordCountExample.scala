@@ -13,32 +13,45 @@ import org.apache.flink.api.scala._
 import collection.JavaConverters._
 
 /**
+  * Consumer command: kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic wc-sink
   *
   * @author hongliang.yin/Heneyin
   * @date 2021/5/30
   */
-object WordCountFromFile {
+object WordCountStream {
 
   def main(args: Array[String]): Unit = {
 
+    if (args.length != 1) {
+      println("At least one args")
+      System.exit(1)
+    }
+
     val env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI()
     env.setParallelism(2)
+    val isStreamSource = args(0) == "stream"
 
     // -------------------
     // Kafka source
     // -------------------
-    val consumer = new FlinkKafkaConsumer[String](List(KafkaConstant.SOURCE_TOPIC).asJava, new SimpleStringSchema(), kafkaConsumerProperties())
-    // 总是从最后拿
-    consumer.setStartFromEarliest()
 
-    val stream = env.addSource(consumer)
+    val streamOrBatch =
+      if (isStreamSource) {
+        val kafkaConsumer = new FlinkKafkaConsumer[String](List(KafkaConstant.SOURCE_TOPIC).asJava, new SimpleStringSchema(), kafkaConsumerProperties())
+        // 总是从最后拿
+        kafkaConsumer.setStartFromEarliest()
+
+        env.addSource(kafkaConsumer)
+      } else {
+        env.readTextFile("/Users/henvealf/projects/my/learn/learn-flink/src/main/resources/sharing/word-count.txt")
+      }
 
     // -------------------
     // wc
     // -------------------
 
-    val resultStream = stream
-        .flatMap(_.toLowerCase.split("\\W+"))
+    val resultStream = streamOrBatch
+        .flatMap(_.toLowerCase.split("\\W+")).name("splitToWord")
         .filter(_.nonEmpty)
         .map((_, 1))
         .keyBy(_._1)
