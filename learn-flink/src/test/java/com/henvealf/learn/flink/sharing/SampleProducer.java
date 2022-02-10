@@ -14,7 +14,7 @@ public class SampleProducer {
 
     @Test
     public void normal() throws InterruptedException {
-        Properties properties = WordCountFromFile.kafkaProducerProperties();
+        Properties properties = WordCountExample.kafkaProducerProperties();
         properties.setProperty("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
         properties.setProperty("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
 
@@ -29,6 +29,11 @@ public class SampleProducer {
             System.out.println("---");
             Thread.sleep(5000);
         }
+
+    }
+
+    @Test
+    public void normalWatermark() {
 
     }
 

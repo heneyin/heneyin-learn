@@ -34,6 +34,8 @@
         <module>learn-kafka</module>
         <module>learn-encache</module>
         <module>learn-calcite</module>
+        <module>learn-grpc</module>
+        <module>learn-jmh</module>
     </modules>
 
 
