@@ -15,7 +15,6 @@
         <module>learn-scala</module>
         <module>learn-design-parttern</module>
         <module>learn-avro</module>
-        <module>learn-java8</module>
         <module>learn-hbase</module>
         <module>learn-hbase2</module>
         <module>learn-maven</module>
@@ -32,7 +31,6 @@
         <module>learn-math3</module>
         <module>learn-spring-amqp</module>
         <module>learn-kafka</module>
-        <module>learn-encache</module>
         <module>learn-calcite</module>
         <module>learn-grpc</module>
         <module>learn-jmh</module>
@@ -202,13 +200,6 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-servlet</artifactId>
                 <version>9.4.18.v20190429</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/nz.ac.waikato.cms.weka/weka-dev -->
-            <dependency>
-                <groupId>nz.ac.waikato.cms.weka</groupId>
-                <artifactId>weka-dev</artifactId>
-                <version>3.9.3</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
