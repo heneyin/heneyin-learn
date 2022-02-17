@@ -10,6 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>learn-algorithm</artifactId>
-
+    <description>数据结构与算法</description>
 
 </project>
