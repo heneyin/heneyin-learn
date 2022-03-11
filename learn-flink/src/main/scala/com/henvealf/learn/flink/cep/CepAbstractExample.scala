@@ -1,7 +1,5 @@
 package com.henvealf.learn.flink.cep
 
-import com.henvealf.learn.flink.cep.CepExample01Simple.{env, getClass, inputTextStream, pattern}
-import org.apache.flink.cep.EventComparator
 import org.apache.flink.cep.functions.{PatternProcessFunction, TimedOutPartialMatchHandler}
 import org.apache.flink.cep.nfa.aftermatch.AfterMatchSkipStrategy
 import org.apache.flink.cep.scala.CEP
