@@ -1,0 +1,8 @@
+plugins {
+    id 'distribution.java-conventions'
+}
+
+dependencies {
+
+    // testImplementation "junit:junit:4.13"
+}

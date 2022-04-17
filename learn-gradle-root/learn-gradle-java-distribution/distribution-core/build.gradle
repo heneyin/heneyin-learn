@@ -1,0 +1,58 @@
+plugins {
+    id 'distribution.java-conventions'
+}
+
+dependencies {
+    // 依赖其他子工程
+    implementation project(':distribution-common')
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+// 设置 main class 与 class path
+jar {
+    manifest {
+        attributes(
+            "Main-Class": "com.heneyin.distribution.core.Distribution",
+            "Class-Path": './'
+        )
+    }
+}
+
+def targetName = 'distribution-root'
+def outputRootDir = "$buildDir" + File.separator + targetName
+def outputZipName = "${targetName}.zip"
+
+task copyJars(type: Copy) {
+    dependsOn jar
+    from sourceSets.main.runtimeClasspath.filter(File::isFile)
+    into "$outputRootDir/lib"
+}
+
+task copyCore(type: Copy) {
+    dependsOn jar
+    from "$buildDir/libs/"
+    into "$outputRootDir/lib"
+}
+
+task copyBin(type: Copy) {
+    dependsOn jar
+
+    from "$projectDir/src/main/bin"
+    into "$outputRootDir/bin"
+}
+
+task copyConfFile(type: Copy) {
+    dependsOn jar
+
+    from "$projectDir/src/main/conf"
+    into "$outputRootDir/conf"
+}
+
+task zip(type: Zip) {
+    dependsOn ('copyJars', 'copyCore', 'copyBin', 'copyConfFile')
+
+    archiveFileName = outputZipName
+    destinationDirectory = layout.buildDirectory.dir('dist')
+
+    from outputRootDir
+}

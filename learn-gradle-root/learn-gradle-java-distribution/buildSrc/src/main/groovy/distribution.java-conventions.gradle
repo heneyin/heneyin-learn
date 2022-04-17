@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+group 'com.heneyin.learn'
+version '1.0.0-SNAPHSOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "junit:junit:4.13"
+}
