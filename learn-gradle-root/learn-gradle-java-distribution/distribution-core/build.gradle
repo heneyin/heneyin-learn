@@ -8,26 +8,20 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 }
 
-// 设置 main class 与 class path
-jar {
-    manifest {
-        attributes(
-            "Main-Class": "com.heneyin.distribution.core.Distribution",
-            "Class-Path": './'
-        )
-    }
-}
-
 def targetName = 'distribution-root'
 def outputRootDir = "$buildDir" + File.separator + targetName
 def outputZipName = "${targetName}.zip"
 
 task copyJars(type: Copy) {
     dependsOn jar
+    // 去除 core 的 class 目录
     from sourceSets.main.runtimeClasspath.filter(File::isFile)
     into "$outputRootDir/lib"
 }
 
+/**
+ * 拷贝 core jar
+ */
 task copyCore(type: Copy) {
     dependsOn jar
     from "$buildDir/libs/"

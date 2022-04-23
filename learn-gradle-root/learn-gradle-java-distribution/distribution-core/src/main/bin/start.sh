@@ -14,7 +14,7 @@ if [ $? -eq 5 ];then
     exit 1
 fi
 
-java -cp ${PROJECT_HOME}/lib/ com.heneyin.distribution.core.Distribution
+java -cp "${PROJECT_HOME}/lib/*" com.heneyin.distribution.core.Distribution $@
 
 if [ $? -eq 0 ]; then 
     echo "Start ${projectName} success on $!"

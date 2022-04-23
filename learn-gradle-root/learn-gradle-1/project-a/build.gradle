@@ -1,0 +1,13 @@
+tasks.register("hello") {
+
+    println "我在 ${project.name} build.gradle 下的 hello task 中"
+}
+
+tasks.register("hello1") {
+    dependsOn 'world'
+    println "我在 ${project.name} build.gradle 下的 hello1 task 中"
+    doLast {
+        println "我在 ${project.name} build.gradle 下的 hello1 task 中"
+    }
+}
+
