@@ -12,6 +12,16 @@ def targetName = 'distribution-root'
 def outputRootDir = "$buildDir" + File.separator + targetName
 def outputZipName = "${targetName}.zip"
 
+jar {
+    manifest {
+        attributes "Main-Class": "com.heneyin.distribution.core.Distribution"
+    }
+}
+
+// ----------------------------------------
+// 发布包，lib 独立管理
+// ----------------------------------------
+
 task copyJars(type: Copy) {
     dependsOn jar
     // 去除 core 的 class 目录
@@ -49,4 +59,25 @@ task zip(type: Zip) {
     destinationDirectory = layout.buildDirectory.dir('dist')
 
     from outputRootDir
+}
+
+// --------------------------
+// fat jar
+// jar-with-dependencies
+// --------------------------
+task fatJar(type: Jar) {
+    manifest.from jar.manifest
+    // 后缀分类名
+    archiveClassifier.set('all')
+    // 添加其他依赖到 jar 中
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+    // 将指定的 jar spec（规范） 作为 fatJar 的子 spec
+    // 该 task 为 jar spec 的一个拷贝
+    with jar
 }

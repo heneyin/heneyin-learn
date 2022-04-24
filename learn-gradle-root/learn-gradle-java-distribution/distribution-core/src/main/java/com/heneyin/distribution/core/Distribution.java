@@ -1,7 +1,5 @@
 package com.heneyin.distribution.core;
 
-import com.heneyin.distribution.common.StringUtils;
-
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
