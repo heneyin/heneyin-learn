@@ -22,5 +22,4 @@ func TestCreateGoroutineUseChannel(t *testing.T) {
 		c <- "hello"
 		c <- "world"
 	}()
-
 }
