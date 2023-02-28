@@ -3,6 +3,7 @@ package _01_basic基础
 import (
 	"fmt"
 	"math"
+	"reflect"
 	"strconv"
 )
 
@@ -30,4 +31,31 @@ func main() {
 	s, e := strconv.ParseInt("10.0", 10, 64)
 	fmt.Println(e)
 	fmt.Println(s)
+}
+
+func type1(args ...interface{}) {
+	for _, element := range args {
+		fmt.Printf("%T\n", element)
+		println(reflect.TypeOf(element).Name())
+		i, ok := element.(int)
+		if ok {
+			println(i)
+		} else {
+			println("error element")
+		}
+		i2, ok2 := args[0].(int)
+		if ok2 {
+			println(i2)
+		} else {
+			println("error arr[0]")
+		}
+		switch element.(type) {
+		case interface{}:
+			println("interface")
+		case int:
+			println("int")
+		default:
+			println("default")
+		}
+	}
 }
