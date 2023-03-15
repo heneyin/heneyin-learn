@@ -1,0 +1,5 @@
+prophet==1.1.2
+numpy==1.21.6
+pandas==1.4.2
+plotly==5.13.1
+pystan==3.6.0
