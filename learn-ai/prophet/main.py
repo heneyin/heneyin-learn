@@ -10,7 +10,7 @@ if __name__ == '__main__':
     df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/examples/example_wp_log_peyton_manning.csv')
     df.head()
 
-    m = Prophet()
+    m = Prophet(holidays_prior_scale=5.0)
     m.fit(df)
 
     future = m.make_future_dataframe(periods=365)
