@@ -8,7 +8,7 @@ from prophet import Prophet
 #
 if __name__ == '__main__':
     df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/examples/example_wp_log_peyton_manning.csv')
-    df.head()
+    print(df.head())
 
     m = Prophet(holidays_prior_scale=5.0)
     m.fit(df)
