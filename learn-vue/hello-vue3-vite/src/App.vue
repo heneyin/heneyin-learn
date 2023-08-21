@@ -3,6 +3,8 @@ import { reactive } from 'vue';
 import HelloWorld from './components/HelloWorld.vue'
 import WatchTestView from './views/WatchTestView.vue'
 import TeleportA from "@/views/teleport/TeleportA.vue";
+import Parent from "@/views/sendProps/Parent.vue";
+import CounterView from "@/views/pinia/CounterView.vue";
 // ref
 let count = ref(0)
 let addRef = () => {
@@ -71,4 +73,10 @@ let computedValue = computed(() => {
 <!--  <RouterView/>-->
   <h1>teleport</h1>
   <TeleportA/>
+
+  <h1>sendProps</h1>
+  <Parent/>
+  <h1>pinia test</h1>
+  <CounterView/>
+
 </template>

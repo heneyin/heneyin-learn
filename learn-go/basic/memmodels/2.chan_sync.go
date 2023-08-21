@@ -8,7 +8,7 @@ var str string
 func f1() {
 	str = "hello world"
 	// close(c)   // 1
-	c <- 0   // 2
+	c <- 0 // 2
 }
 
 func helloChan() {
@@ -16,5 +16,3 @@ func helloChan() {
 	<-c
 	println(str)
 }
-
-

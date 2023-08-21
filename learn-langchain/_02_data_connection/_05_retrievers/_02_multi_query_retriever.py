@@ -15,12 +15,16 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # Load blog post
-loader = WebBaseLoader("https://lilianweng.github.io/posts/2023-06-23-agent/")
+loader = WebBaseLoader("https://baijiahao.baidu.com/s?id=1773015278425002420")
 data = loader.load()
+
+print("web loaded data:", data)
 
 # Split
 text_splitter = RecursiveCharacterTextSplitter(chunk_size = 500, chunk_overlap = 0)
 splits = text_splitter.split_documents(data)
+
+print("web splits data:", splits)
 
 # VectorDB
 embedding = OpenAIEmbeddings()
@@ -87,11 +91,11 @@ llm = ChatOpenAI(temperature=0)
 llm_chain = LLMChain(llm=llm, prompt=QUERY_PROMPT, output_parser=output_parser)
 
 # Other inputs
-question = "What are the approaches to Task Decomposition?"
+question = "简述一下这篇文章?"
 
 # "lines" is the key (attribute name) of the parsed output
 retriever = MultiQueryRetriever(retriever=vectordb.as_retriever(), llm_chain=llm_chain,parser_key="lines")
 
 # Results
-unique_docs = retriever.get_relevant_documents(query="What does the course say about regression?")
+unique_docs = retriever.get_relevant_documents(query="为什么没有能正确防备危险的到来?")
 len(unique_docs)

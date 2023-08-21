@@ -7,4 +7,7 @@ chromadb
 tiktoken
 bs4
 faiss-cpu
+lark
+pinecone-client
 # faiss-gpu
+wikipedia

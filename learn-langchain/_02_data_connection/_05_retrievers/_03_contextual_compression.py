@@ -87,11 +87,68 @@ Remember, *DO NOT* edit the extracted parts of the context.
 Extracted relevant parts:
 """
 compressed_docs = compression_retriever.get_relevant_documents("介绍一下 山海经")
-print("---------- 压缩之后 --------------")
+print("---------- 压缩之后 ！效果最好！--------------")
 pretty_print_docs(compressed_docs)
 
 
 """
 更多压缩器：
-1. filters LLMChainFilter
+1. filters LLMChainFilter:决定要过滤掉哪些最初检索到的文档以及要返回哪些文档，而无需操作文档内容。
+"""
+
+from langchain.retrievers.document_compressors import LLMChainFilter
+
+_filter = LLMChainFilter.from_llm(chat)
+compression_retriever = ContextualCompressionRetriever(base_compressor=_filter, base_retriever=retriever)
+
+compressed_docs = compression_retriever.get_relevant_documents("介绍一下 山海经")
+print("---------- filters 压缩之后 --------------")
+pretty_print_docs(compressed_docs)
+
+"""
+EmbeddingsFilter:  不使用 LLM。
+EmbeddingsFilter 通过向量文档和查询并仅返回那些与查询具有足够相似向量的文档来提供更便宜和更快的选项
+"""
+
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.retrievers.document_compressors import EmbeddingsFilter
+
+embeddings = OpenAIEmbeddings()
+embeddings_filter = EmbeddingsFilter(embeddings=embeddings, similarity_threshold=0.76)
+compression_retriever = ContextualCompressionRetriever(base_compressor=embeddings_filter, base_retriever=retriever)
+
+compressed_docs = compression_retriever.get_relevant_documents("介绍一下 山海经")
+print("---------- EmbeddingsFilter 压缩之后 --------------")
+pretty_print_docs(compressed_docs)
+
+
+"""
+将压缩器和文档转换器串在一起
+
+使用 DocumentCompressorPipeline 我们还可以轻松地按顺序组合多个压缩器。
+除了压缩器之外，我们还可以将 BaseDocumentTransformers 添加到管道中，它不执行任何上下文压缩，而只是对一组文档执行一些转换。
+例如，TextSplitters 可以用作文档转换器，将文档分割成更小的部分，而 EmbeddingsRedundantFilter 可以用于根据文档之间嵌入的相似性来过滤掉冗余文档。
+"""
+
+# 下面我们创建一个压缩器管道，首先将文档分割成更小的块，然后删除冗余文档，然后根据与查询的相关性进行过滤。
+
+"""
+from langchain.document_transformers import EmbeddingsRedundantFilter
+from langchain.retrievers.document_compressors import DocumentCompressorPipeline
+from langchain.text_splitter import CharacterTextSplitter
+
+splitter = CharacterTextSplitter(chunk_size=300, chunk_overlap=0, separator=". ")
+redundant_filter = EmbeddingsRedundantFilter(embeddings=embeddings)
+relevant_filter = EmbeddingsFilter(embeddings=embeddings, similarity_threshold=0.76)
+
+# 连在一起
+pipeline_compressor = DocumentCompressorPipeline(
+    transformers=[splitter, redundant_filter, relevant_filter]
+)
+
+compression_retriever = ContextualCompressionRetriever(base_compressor=pipeline_compressor, base_retriever=retriever)
+
+compressed_docs = compression_retriever.get_relevant_documents("What did the president say about Ketanji Jackson Brown")
+pretty_print_docs(compressed_docs)
+
 """

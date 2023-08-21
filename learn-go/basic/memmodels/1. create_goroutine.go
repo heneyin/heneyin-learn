@@ -13,10 +13,9 @@ func helloCreate() {
 	go f()
 }
 
-
 // goroutine 销毁
 // 执行完就没了
 func helloDestroy() {
-	go func() {a = "hello"}()
+	go func() { a = "hello" }()
 	println(a)
 }

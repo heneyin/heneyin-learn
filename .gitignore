@@ -1,5 +1,7 @@
-target
+**/target
 .idea
 **/*.iml
 learn-mapdb/*.db
 learn-mapdb/file4
+**/build
+**/.vscode
