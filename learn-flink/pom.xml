@@ -19,14 +19,10 @@ under the License.
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<artifactId>learn-parent</artifactId>
-		<groupId>com.henvealf.learn</groupId>
-		<version>1.0.0</version>
-	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 
+	<groupId>com.heneyin</groupId>
 	<artifactId>learn-flink</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
@@ -38,7 +34,7 @@ under the License.
 		<repository>
 			<id>alimaven</id>
 			<name>aliyun maven</name>
-			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<url>https://maven.aliyun.com/nexus/content/groups/public/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -61,8 +57,8 @@ under the License.
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<flink.version>1.13.0</flink.version>
-		<scala.binary.version>2.11</scala.binary.version>
+		<flink.version>1.14.5</flink.version>
+		<scala.binary.version>2.12</scala.binary.version>
 		<scala.version>2.11.12</scala.version>
 	</properties>
 
@@ -101,11 +97,11 @@ under the License.
 		</dependency>
 
 		<!-- Scala Library, provided by Flink as well. -->
-		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-library</artifactId>
-			<version>${scala.version}</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.scala-lang</groupId>-->
+<!--			<artifactId>scala-library</artifactId>-->
+<!--			<version>${scala.version}</version>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
@@ -127,6 +123,7 @@ under the License.
 			<version>1.7.7</version>
 			<scope>runtime</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -148,7 +145,8 @@ under the License.
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
-			<artifactId>flink-gelly-scala_2.11</artifactId>
+			<artifactId>flink-gelly_2.12</artifactId>
+			<version>${flink.version}</version>
 		</dependency>
 
         <!--		table       -->
@@ -166,9 +164,10 @@ under the License.
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
-			<artifactId>flink-table-planner-blink_${scala.binary.version}</artifactId>
+			<artifactId>flink-table-planner_${scala.binary.version}</artifactId>
 			<version>${flink.version}</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
@@ -179,13 +178,19 @@ under the License.
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.73</version>
+			<version>1.2.83</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.flink/flink-json -->
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-json</artifactId>
+			<version>${flink.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-connector-kafka_2.12</artifactId>
 			<version>${flink.version}</version>
 		</dependency>
 
@@ -292,12 +297,12 @@ under the License.
 					<version>${flink.version}</version>
 					<scope>compile</scope>
 				</dependency>
-				<dependency>
-					<groupId>org.scala-lang</groupId>
-					<artifactId>scala-library</artifactId>
-					<version>${scala.version}</version>
-					<scope>compile</scope>
-				</dependency>
+<!--				<dependency>-->
+<!--					<groupId>org.scala-lang</groupId>-->
+<!--					<artifactId>scala-library</artifactId>-->
+<!--					<version>${scala.version}</version>-->
+<!--					<scope>compile</scope>-->
+<!--				</dependency>-->
 			</dependencies>
 		</profile>
 	</profiles>

@@ -30,7 +30,7 @@ tasks.register("hello") {
 
 tasks.named('hello') {
     doFirst {
-        println 'Hello Venus'
+        println 'Hello World'
     }
 }
 

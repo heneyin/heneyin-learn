@@ -3,10 +3,8 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"log"
-	"time"
-
 	"github.com/ClickHouse/clickhouse-go"
+	"log"
 )
 
 func write() {

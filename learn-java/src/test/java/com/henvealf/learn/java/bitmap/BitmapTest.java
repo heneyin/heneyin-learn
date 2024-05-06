@@ -3,16 +3,19 @@ package com.henvealf.learn.java.bitmap;
 import org.junit.Test;
 import org.roaringbitmap.RoaringBitmap;
 import org.roaringbitmap.longlong.LongBitmapDataProvider;
+import org.roaringbitmap.longlong.Roaring64Bitmap;
 import org.roaringbitmap.longlong.Roaring64NavigableMap;
 import sun.misc.Unsafe;
 
 import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 import java.nio.ByteBuffer;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
+ * RoaringBitmap
  * @author hongliang.yin/Henvealf
  * @date 2020/9/16
  */
@@ -79,8 +82,15 @@ public class BitmapTest {
         for (long i = 1; i <= 100000_000; i++) {
             r.addLong(i);
         }
+        r.addLong(1012308189302681600L);
         long serializedSizeInBytes = r.serializedSizeInBytes();
         System.out.println("serializedSizeInBytes: " + serializedSizeInBytes / 1024 / 1024 + "MB");
+        boolean contains = r.contains(1012308189302681600L);
+        System.out.println(contains);
+        boolean contains1 = r.contains(1012308189302681601L);
+        System.out.println(contains1);
+        Roaring64Bitmap r1 = new Roaring64Bitmap();
+
     }
 
 }
