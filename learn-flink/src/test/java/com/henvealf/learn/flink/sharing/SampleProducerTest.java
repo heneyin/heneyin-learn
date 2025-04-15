@@ -1,8 +1,9 @@
 package com.henvealf.learn.flink.sharing;
 
+import com.henvealf.learn.flink.java.sharing.KafkaConstant;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 
@@ -10,11 +11,12 @@ import java.util.Properties;
  * @author hongliang.yin/Heneyin
  * @date 2021/5/30
  */
-public class SampleProducer {
+public class SampleProducerTest {
 
     @Test
     public void normal() throws InterruptedException {
-        Properties properties = WordCountExample.kafkaProducerProperties();
+        Properties properties = new Properties();
+        properties.setProperty("bootstrap.server", "localhost:9094");
         properties.setProperty("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
         properties.setProperty("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
 

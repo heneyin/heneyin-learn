@@ -1,8 +1,9 @@
-package _05_函数
+package _05_function
 
 import (
 	"fmt"
 	"strings"
+	"testing"
 )
 
 /* 链式处理。将函数作为变量传入 */
@@ -15,7 +16,7 @@ func StringProcess(list []string, chain []func(string) string) {
 	}
 }
 
-func main() {
+func TestFunctionChain(t *testing.T) {
 	strList := []string{
 		"zhangbeihai  ",
 		"Huo Ji",

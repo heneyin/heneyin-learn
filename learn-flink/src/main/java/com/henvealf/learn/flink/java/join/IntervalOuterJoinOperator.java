@@ -22,7 +22,7 @@ import org.apache.flink.annotation.Internal;
 import org.apache.flink.annotation.VisibleForTesting;
 import org.apache.flink.api.common.state.MapState;
 import org.apache.flink.api.common.state.MapStateDescriptor;
-import org.apache.flink.api.common.typeutils.CompositeTypeSerializerConfigSnapshot;
+//import org.apache.flink.api.common.typeutils.CompositeTypeSerializerConfigSnapshot;
 import org.apache.flink.api.common.typeutils.CompositeTypeSerializerSnapshot;
 import org.apache.flink.api.common.typeutils.CompositeTypeSerializerUtil;
 import org.apache.flink.api.common.typeutils.TypeSerializer;
@@ -566,37 +566,37 @@ public class IntervalOuterJoinOperator<K, T1, T2, OUT>
     }
 
     /**
-     * The {@link CompositeTypeSerializerConfigSnapshot configuration} of our serializer.
      *
      * @deprecated this snapshot class is no longer in use, and is maintained only for backwards
      *     compatibility. It is fully replaced by {@link BufferEntrySerializerSnapshot}.
      */
     @Deprecated
     public static class BufferSerializerConfigSnapshot<T>
-            extends CompositeTypeSerializerConfigSnapshot<BufferEntry<T>> {
+    // extends CompositeTypeSerializerConfigSnapshot<BufferEntry<T>>
+    {
 
-        private static final int VERSION = 1;
-
-        public BufferSerializerConfigSnapshot() {}
-
-        public BufferSerializerConfigSnapshot(final TypeSerializer<T> userTypeSerializer) {
-            super(userTypeSerializer);
-        }
-
-        @Override
-        public int getVersion() {
-            return VERSION;
-        }
-
-        @Override
-        public TypeSerializerSchemaCompatibility<BufferEntry<T>> resolveSchemaCompatibility(
-                TypeSerializer<BufferEntry<T>> newSerializer) {
-
-            return CompositeTypeSerializerUtil.delegateCompatibilityCheckToNewSnapshot(
-                    newSerializer,
-                    new BufferEntrySerializerSnapshot<>(),
-                    getSingleNestedSerializerAndConfig().f1);
-        }
+//        private static final int VERSION = 1;
+//
+//        public BufferSerializerConfigSnapshot() {}
+//
+//        public BufferSerializerConfigSnapshot(final TypeSerializer<T> userTypeSerializer) {
+//            super(userTypeSerializer);
+//        }
+//
+//        @Override
+//        public int getVersion() {
+//            return VERSION;
+//        }
+//
+//        @Override
+//        public TypeSerializerSchemaCompatibility<BufferEntry<T>> resolveSchemaCompatibility(
+//                TypeSerializer<BufferEntry<T>> newSerializer) {
+//
+//            return CompositeTypeSerializerUtil.delegateCompatibilityCheckToNewSnapshot(
+//                    newSerializer,
+//                    new BufferEntrySerializerSnapshot<>(),
+//                    getSingleNestedSerializerAndConfig().f1);
+//        }
     }
 
     /** A {@link TypeSerializerSnapshot} for {@link BufferEntrySerializer}. */

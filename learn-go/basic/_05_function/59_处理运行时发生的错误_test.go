@@ -1,8 +1,9 @@
-package _05_函数
+package _05_function
 
 import (
 	"errors"
 	"fmt"
+	"testing"
 )
 
 /* 定义与使用 error */
@@ -32,7 +33,7 @@ func newParseError(filename string, line int) error {
 	return &ParseError{filename, line}
 }
 
-func main() {
+func TestFunctionRuntimeError(t *testing.T) {
 	fmt.Println(div(1, 0))
 
 	var e error

@@ -1,9 +1,10 @@
-package _05_函数
+package _05_function
 
 import (
 	"fmt"
 	"os"
 	"sync"
+	"testing"
 )
 
 // defer 在函数退出前执行，类似于 java 的 finally
@@ -45,9 +46,9 @@ func fileSize(filename string) int64 {
 	return size
 }
 
-func main() {
+func TestFunctionDeferredExecution(t *testing.T) {
 	normal()
 	valueByKey["hello"] = 10
 	fmt.Println(valueByKey["hello"])
-	fmt.Println(fileSize("./57_可变参数.go"))
+	fmt.Println(fileSize("./57_可变参数_test.go"))
 }

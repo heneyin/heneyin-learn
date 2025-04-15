@@ -1,9 +1,10 @@
-package _05_函数
+package _05_function
 
 // 不知道什么玩意，用法好奇怪
 
 import (
 	"fmt"
+	"testing"
 )
 
 // 一个接口
@@ -32,7 +33,7 @@ func (fc FuncCaller) Call(p interface{}) {
 	fc(p)
 }
 
-func main() {
+func TestFunctionImplInterface(t *testing.T) {
 	/* 使用结构体实现接口 */
 	var invoker Invoker
 

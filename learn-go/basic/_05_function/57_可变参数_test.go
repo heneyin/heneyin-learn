@@ -1,8 +1,9 @@
-package _05_函数
+package _05_function
 
 import (
 	"bytes"
 	"fmt"
+	"testing"
 )
 
 /* 遍历可变参数列表 */
@@ -37,7 +38,7 @@ func printTypeValue(slist ...interface{}) string {
 	return b.String()
 }
 
-func main() {
+func TestFunctionVariadicParameters(t *testing.T) {
 	fmt.Println(joinStrings("a", "b", "c", "d"))
 	fmt.Println(joinStrings("a", "b", "c", "d"))
 	fmt.Println(printTypeValue(1, "haha", "dd", "cc", true))

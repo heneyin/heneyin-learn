@@ -1,7 +1,8 @@
-package _05_函数
+package _05_function
 
 import (
 	"fmt"
+	"testing"
 )
 
 /* 用闭包实现一个累加器 */
@@ -23,7 +24,7 @@ func PlayerGen(name string) func() (string, int) {
 	}
 }
 
-func main() {
+func TestFunctionClosure(t *testing.T) {
 	/* 在闭包内部修改引用的变量 */
 	str := "hello world"
 

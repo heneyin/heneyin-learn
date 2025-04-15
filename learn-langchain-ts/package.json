@@ -1,0 +1,18 @@
+{
+	"name": "learn-langchain-ts",
+	"version": "0.0.1",
+	"type": "module",
+	"dependencies": {
+		"@langchain/community": "^0.0.55",
+		"@langchain/core": "^0.1.62",
+		"@langchain/openai": "^0.0.28",
+		"@types/node": "^20.12.10",
+		"global-tunnel-ng": "^2.7.1",
+		"langchain": "^0.1.36",
+		"ts-node": "^10.9.2",
+		"tslib": "^2.6.2"
+	},
+	"devDependencies": {
+		"typescript": "^5.4.5"
+	}
+}

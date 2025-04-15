@@ -1,8 +1,9 @@
-package _05_函数
+package _05_function
 
 import (
 	"flag"
 	"fmt"
+	"testing"
 )
 
 /* 匿名函数用作回调函数 */
@@ -12,7 +13,7 @@ func visit(data []string, f func(string)) {
 	}
 }
 
-func main() {
+func TestFunctionCallback(t *testing.T) {
 	/* 匿名函数 */
 	/* 定义时调用匿名函数 */
 	func(data int) {
@@ -48,5 +49,4 @@ func main() {
 	} else {
 		fmt.Println("Not found ")
 	}
-
 }

@@ -1,8 +1,9 @@
-package _05_函数
+package _05_function
 
 import (
 	"fmt"
 	"runtime"
+	"testing"
 )
 
 // 崩溃时需要传递的上下文信息
@@ -25,8 +26,7 @@ func ProtectedRun(entry func()) {
 	entry()
 }
 
-// go run src/_05_函数/511_宕机恢复.go
-func main() {
+func TestPanicRecover(t *testing.T) {
 	fmt.Println("运行前")
 	ProtectedRun(func() {
 		fmt.Println("手动宕机前")
